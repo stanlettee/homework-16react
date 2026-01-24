@@ -1,15 +1,9 @@
-import { useState, useEffect } from 'react';
 import './App.css';
+import { useUser } from './UserContext';
 
 function App() {
-  const [goodStat, changeGood] = useState(0)
-  const [neutralStat, changeNeutral] = useState(0)
-  const [badStat, changeBad] = useState(0)
-  useEffect(() => {
-   console.log('Your state has been reloaded')
- }, [goodStat, neutralStat, badStat]);
-  let total = goodStat + neutralStat + badStat
-  let positiveFeedback = 100 / (goodStat + neutralStat + badStat) * goodStat
+  const {goodStat, neutralStat, badStat, changeGood, changeNeutral, changeBad } = useUser()
+  let {positiveFeedback, total} = useUser()
 
   
   return (
