@@ -8,6 +8,7 @@ import { Statistics } from "./components/Statistics";
 function App() {
   const { state, dispatch, total, positiveFeedback } = useUser();
   const renderInfo = useRenderInfo("App");
+  const info = useRenderInfo("App") || {};
 
   const [count, setCount] = useState(0);
 
@@ -37,20 +38,19 @@ function App() {
         positiveFeedback={positiveFeedback}
       />
 
-      <button onClick={() => setCount((prev) => prev + 1)}>
+      <button onClick={() => setCount(count + 1)}>
         Re-render App
       </button>
 
-      <div className="render-info">
-        <h2>Render Info</h2>
-
-        {Object.entries(renderInfo).map(([key, value]) => (
-          <ul className="app-list" key={key}>
-            <li className="app-item">{key}</li>
-            <li className="app-item">{value}</li>
-          </ul>
-        ))}
-      </div>
+    <div className="render-info">
+      <h2>Render Info</h2>
+      {Object.entries(info ?? {}).map(([key, value]) => (
+        <ul key={key}>
+          <li>{key}</li>
+          <li>{value}</li>
+        </ul>
+      ))}
+    </div>
     </div>
   );
 }
