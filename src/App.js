@@ -44,12 +44,13 @@ function App() {
 
     <div className="render-info">
       <h2>Render Info</h2>
-      {Object.entries(info ?? {}).map(([key, value]) => (
-        <ul className='app-list' key={key}>
-          <li>{key}</li>
-          <li>{value}</li>
-        </ul>
-      ))}
+        {Object.keys(info).map((key) => {
+            return ( <ul className='app-list' key={key}>
+              <li>{key}</li>
+              <li>{info[key]}</li>
+            </ul>
+            );
+          })}
     </div>
     </div>
   );
