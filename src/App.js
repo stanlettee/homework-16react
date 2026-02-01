@@ -8,7 +8,7 @@ import { Statistics } from "./components/Statistics";
 
 function App() {
   const { state, dispatch, total, positiveFeedback } = useUser();
-  const info = useRenderInfo("App");
+ const info = useRenderInfo("App") || {};
 
   const [count, setCount] = React.useState(0);
 
@@ -44,13 +44,12 @@ function App() {
 
     <div className="render-info">
       <h2>Render Info</h2>
-        {Object.keys(info).map((key) => {
-            return ( <ul className='app-list' key={key}>
-              <li>{key}</li>
-              <li>{info[key]}</li>
-            </ul>
-            );
-          })}
+      {Object.keys(info ?? {}).map((key) => (
+        <ul className="app-list" key={key}>
+          <li>{key}</li>
+          <li>{info[key]}</li>
+        </ul>
+      ))}
     </div>
     </div>
   );
