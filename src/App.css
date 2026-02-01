@@ -61,7 +61,7 @@ body {
   border-radius: 8px;
 }
 
-/* Sections */
+
 .feedback-div,
 .statistics-div {
   margin-bottom: 24px;
@@ -86,8 +86,4 @@ h2 {
   display: flex;
   gap: 10px;
   justify-content: center;
-}
-
-.app-item {
-
 }
