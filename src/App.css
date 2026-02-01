@@ -36,3 +36,58 @@
     transform: rotate(360deg);
   }
 }
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+/* Base */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f4f4;
+}
+
+.App {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+}
+
+/* Sections */
+.feedback-div,
+.statistics-div {
+  margin-bottom: 24px;
+}
+
+h2 {
+  margin-bottom: 12px;
+}
+
+
+
+
+
+.render-info {
+  margin-top: 20px;
+  padding: 12px;
+  background: #eee;
+  border-radius: 6px;
+}
+
+.app-list {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.app-item {
+
+}

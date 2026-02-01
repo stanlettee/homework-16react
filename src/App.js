@@ -1,26 +1,55 @@
-import './App.css';
-import { useUser } from './UserContext';
+import "./App.css";
+import { useCallback, useState } from "react";
+import { useRenderInfo } from "@uidotdev/usehooks";
+import { useUser } from "./UserContext";
+import { FeedbackButtons } from "./components/FeedbackButtons";
+import { Statistics } from "./components/Statistics";
 
 function App() {
-  const {goodStat, neutralStat, badStat, changeGood, changeNeutral, changeBad } = useUser()
-  let {positiveFeedback, total} = useUser()
+  const { state, dispatch, total, positiveFeedback } = useUser();
+  const renderInfo = useRenderInfo("App");
 
-  
+  const [count, setCount] = useState(0);
+
+  const onGood = useCallback(() => {
+    dispatch({ type: "GOOD" });
+  }, [dispatch]);
+
+  const onNeutral = useCallback(() => {
+    dispatch({ type: "NEUTRAL" });
+  }, [dispatch]);
+
+  const onBad = useCallback(() => {
+    dispatch({ type: "BAD" });
+  }, [dispatch]);
+
   return (
     <div className="App">
-      <div className='feedback-div'>
-        <h2 className='feedback-title'>Please give as feedback</h2>
-        <button onClick={() => {changeGood(goodStat + 1)}} className='feedback-button' type='button'>Good</button>
-        <button onClick={() => {changeNeutral(neutralStat + 1)}} className='feedback-button' type='button'>Neutral</button>
-        <button onClick={() => {changeBad(badStat + 1)}} className='feedback-button' type='button'>Bad</button>
-      </div>
-      <div className='statistics-div'>
-        <h2 className='statistics-title'>Statistics</h2>
-        <p className='statistics-text'>Good: {goodStat}</p>
-        <p className='statistics-text'>Neutral: {neutralStat}</p>
-        <p className='statistics-text'>Bad: {badStat}</p>
-        <p className='statistics-text'>Total: {goodStat + neutralStat + badStat}</p>
-        <p className='statistics-text'>Positive feedback: {total === 0 ? 0 : positiveFeedback}%</p>
+      <FeedbackButtons
+        onGood={onGood}
+        onNeutral={onNeutral}
+        onBad={onBad}
+      />
+
+      <Statistics
+        state={state}
+        total={total}
+        positiveFeedback={positiveFeedback}
+      />
+
+      <button onClick={() => setCount((prev) => prev + 1)}>
+        Re-render App
+      </button>
+
+      <div className="render-info">
+        <h2>Render Info</h2>
+
+        {Object.entries(renderInfo).map(([key, value]) => (
+          <ul className="app-list" key={key}>
+            <li className="app-item">{key}</li>
+            <li className="app-item">{value}</li>
+          </ul>
+        ))}
       </div>
     </div>
   );
