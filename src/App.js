@@ -7,10 +7,9 @@ import { Statistics } from "./components/Statistics";
 
 function App() {
   const { state, dispatch, total, positiveFeedback } = useUser();
-  const renderInfo = useRenderInfo("App");
-  const info = useRenderInfo("App") || {};
+  const info = useRenderInfo("App");
 
-  const [count, setCount] = useState(0);
+  const [count, setCount] = React.useState(0);
 
   const onGood = useCallback(() => {
     dispatch({ type: "GOOD" });
