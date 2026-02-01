@@ -45,7 +45,7 @@ function App() {
     <div className="render-info">
       <h2>Render Info</h2>
       {Object.entries(info ?? {}).map(([key, value]) => (
-        <ul key={key}>
+        <ul className='app-list' key={key}>
           <li>{key}</li>
           <li>{value}</li>
         </ul>
